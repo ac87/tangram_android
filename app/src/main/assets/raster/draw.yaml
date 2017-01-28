@@ -1,0 +1,6 @@
+layers:
+    terrain:
+        data: { source: stamen-terrain }
+        draw:
+            raster:
+                order: 0 # draw on bottom

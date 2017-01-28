@@ -1,0 +1,9 @@
+import:
+#    - common/globals.yaml
+#    - common/styles.yaml
+#    - vector/draw.yaml
+#    - vector/global.yaml
+#    - vector/source.yaml
+
+    - https://raw.githubusercontent.com/tangrams/bubble-wrap/gh-pages/bubble-wrap-style.yaml
+

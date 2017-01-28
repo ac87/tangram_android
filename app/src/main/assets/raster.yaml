@@ -1,0 +1,6 @@
+import:
+    - common/globals.yaml
+    - common/styles.yaml
+    - raster/draw.yaml
+    - raster/global.yaml
+    - raster/source.yaml

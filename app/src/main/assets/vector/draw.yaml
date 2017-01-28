@@ -1,0 +1,53 @@
+layers:
+    earth:
+        data: { source: osm }
+        draw:
+            polygons:
+                order: 0
+                color: '#f0ebeb'
+    landuse:
+        data: { source: osm }
+        filter:
+            name: true
+            any:
+                - { $zoom: { min: 9 }, area: { min: 10000000 } }
+                - { $zoom: { min: 10 }, area: { min: 3300000 } }
+                - { $zoom: { min: 12 }, area: { min: 1000000 } }
+                - { $zoom: { min: 13 }, area: { min: 10000 } }
+                - { $zoom: { min: 15 } }
+        draw:
+            polygons:
+                order: 1
+                color: '#fffffa'
+                interactive: true # currently ignored
+        green:
+            filter: { kind: [park, graveyard, cemetery, forest, recreation_ground] }
+            draw:
+                polygons:
+                    order: 2
+                    color: '#89ab84'
+        blue:
+            filter: { kind: [commercial, industrial] }
+            draw:
+                polygons:
+                    color: '#C0CDCD'
+        orange:
+            filter: { kind: [university] }
+            draw:
+                polygons:
+                    color: '#D9CFC3'
+
+    water:
+        data: { source: osm }
+        filter:
+            any:
+                # show smaller water areas at higher zooms
+                - { $zoom: { min: 0 }, area: { min: 10000000 } }
+                - { $zoom: { min: 10 }, area: { min: 1000000 } }
+                - { $zoom: { min: 12 }, area: { min: 100000 } }
+                - { $zoom: { min: 15 }, area: { min: 1000 } }
+                - { $zoom: { min: 18 } }
+        draw:
+            flatcolor:
+                order: 3
+                color: '#8db7d5'

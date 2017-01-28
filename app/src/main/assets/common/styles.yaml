@@ -1,0 +1,4 @@
+styles:
+    flatcolor:
+        base: polygons
+        lighting: false

@@ -1,0 +1,17 @@
+global:
+    default_text_source: |
+        function() {
+            if (feature.ref && feature.name_en ) { return feature.ref +" " + feature.name_en; } else if (feature.name_en) { return feature.name_en; } else { return feature.ref; }
+        }
+    name_source: |
+        function() {
+            { return feature.name_en; }
+        }
+    ref_source: |
+        function() {
+            if (feature.ref) { return feature.ref; } else if (feature.name) { return feature.name; } else { return "No Ref"; }
+        }
+cameras:
+    perspective:
+        type: perspective
+        vanishing_point: [0, -500]
