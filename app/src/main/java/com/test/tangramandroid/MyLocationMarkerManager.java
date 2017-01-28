@@ -14,6 +14,7 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.view.View;
 
 import com.mapzen.tangram.LngLat;
@@ -22,11 +23,15 @@ import com.mapzen.tangram.Marker;
 
 public class MyLocationMarkerManager implements LocationListener {
 
+    private final String TAG = MyLocationMarkerManager.class.getSimpleName();
+
     public static final String DEFAULT_STYLE = "style: 'points', color: 'white', size: [52px, 52px], collide: false, flat: true";
     private Context context;
     private MapController mapController;
     private LocationManager locationManager;
     private Marker myLocationMarker;
+
+    private boolean animate = true; // note: if true. setPositionEased seems to cause something to continually rerender the map. Or ViewCompleteListener is lying
 
     public MyLocationMarkerManager(Context context, final MapController mapController, View myLocationButton) {
 
@@ -104,7 +109,12 @@ public class MyLocationMarkerManager implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
-        myLocationMarker.setPoint(new LngLat(location.getLongitude(), location.getLatitude()));
+        Log.d(TAG, "Location changed");
+        if (animate)
+            myLocationMarker.setPointEased(new LngLat(location.getLongitude(), location.getLatitude()), 200, MapController.EaseType.LINEAR);
+        else
+            myLocationMarker.setPoint(new LngLat(location.getLongitude(), location.getLatitude()));
+
         if (location.hasBearing())
             updateMarkerStyle((int) location.getBearing());
     }
