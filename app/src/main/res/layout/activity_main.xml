@@ -24,4 +24,17 @@
         android:layout_marginBottom="@dimen/map_button_margin"
         android:background="@drawable/map_button_resource" />
 
+    <ImageButton
+        android:layout_width="@dimen/map_button_size"
+        android:layout_height="@dimen/map_button_size"
+        android:id="@+id/buttonMyLocation"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="@dimen/map_button_margin"
+        android:layout_marginEnd="@dimen/map_button_margin"
+        android:layout_marginBottom="@dimen/map_button_margin"
+        android:background="@drawable/map_button_resource"
+        android:src="@drawable/ic_my_location_black_24dp" />
+
 </RelativeLayout>

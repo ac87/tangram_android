@@ -8,7 +8,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.mapzen.tangram.LngLat;
@@ -23,6 +22,8 @@ public class MainActivity extends AppCompatActivity implements MapView.OnMapRead
 
     private MapView mapView;
     private MapController mapController;
+
+    private MyLocationMarkerManager myLocation;
 
     private boolean isVector = true;
 
@@ -79,6 +80,9 @@ public class MainActivity extends AppCompatActivity implements MapView.OnMapRead
                 Log.d(TAG, "View complete");
             }
         });
+
+        if (MyLocationMarkerManager.deviceHasGpsCapability(this))
+            myLocation = new MyLocationMarkerManager(this, mapController, findViewById(R.id.buttonMyLocation));
     }
 
     @Override
@@ -98,12 +102,18 @@ public class MainActivity extends AppCompatActivity implements MapView.OnMapRead
                     REQUEST_READWRITE_STORAGE);
             return;
         }
+
+        if (myLocation != null)
+            myLocation.onResume();
     }
 
     @Override
     public void onPause() {
         super.onPause();
         mapView.onPause();
+
+        if (myLocation != null)
+            myLocation.onPause();
     }
 
     @Override
