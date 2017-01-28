@@ -27,6 +27,18 @@
     <ImageButton
         android:layout_width="@dimen/map_button_size"
         android:layout_height="@dimen/map_button_size"
+        android:id="@+id/buttonRoute"
+        android:layout_marginLeft="@dimen/map_button_margin"
+        android:layout_marginStart="@dimen/map_button_margin"
+        android:layout_marginBottom="@dimen/map_button_margin"
+        android:layout_above="@id/buttonToggle"
+        android:background="@drawable/map_button_resource"
+        android:src="@drawable/ic_directions_car_black_24dp"/>
+
+
+    <ImageButton
+        android:layout_width="@dimen/map_button_size"
+        android:layout_height="@dimen/map_button_size"
         android:id="@+id/buttonMyLocation"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"

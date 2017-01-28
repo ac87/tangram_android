@@ -1,6 +1,6 @@
 import:
 #    - common/globals.yaml
-#    - common/styles.yaml
+    - common/styles.yaml
 #    - vector/draw.yaml
 #    - vector/global.yaml
 #    - vector/source.yaml

@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements MapView.OnMapRead
     private MapController mapController;
 
     private MyLocationMarkerManager myLocation;
+    private RouteManager route;
 
     private boolean isVector = true;
 
@@ -43,6 +44,15 @@ public class MainActivity extends AppCompatActivity implements MapView.OnMapRead
 
                 mapController.queueEvent(reloadRunnable);
                 setSourceToggleDrawable(buttonToggle);
+            }
+        });
+
+        final ImageButton buttonRoute = (ImageButton) findViewById(R.id.buttonRoute);
+        buttonRoute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (route != null)
+                    route.showRoute();
             }
         });
 
@@ -83,6 +93,8 @@ public class MainActivity extends AppCompatActivity implements MapView.OnMapRead
 
         if (MyLocationMarkerManager.deviceHasGpsCapability(this))
             myLocation = new MyLocationMarkerManager(this, mapController, findViewById(R.id.buttonMyLocation));
+
+        route = new RouteManager(mapController);
     }
 
     @Override

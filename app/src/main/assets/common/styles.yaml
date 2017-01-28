@@ -2,3 +2,6 @@ styles:
     flatcolor:
         base: polygons
         lighting: false
+    blended-lines:
+        base: lines
+        blend: overlay
