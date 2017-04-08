@@ -14,6 +14,7 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 
@@ -63,7 +64,7 @@ public class MyLocationMarkerManager implements LocationListener {
     private void createMarker() {
         myLocationMarker = mapController.addMarker();
         myLocationMarker.setDrawOrder(250);
-        myLocationMarker.setStyling("{ " + DEFAULT_STYLE + " }");
+        myLocationMarker.setStylingFromString("{ " + DEFAULT_STYLE + " }");
         myLocationMarker.setDrawable(getBitmapDrawable((VectorDrawable) context.getResources().getDrawable(R.drawable.ic_navigation_24dp)));
 
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
@@ -120,7 +121,7 @@ public class MyLocationMarkerManager implements LocationListener {
     }
 
     private void updateMarkerStyle(int bearing) {
-        myLocationMarker.setStyling("{ " + DEFAULT_STYLE + ", angle: " + bearing + " }");
+        myLocationMarker.setStylingFromString("{ " + DEFAULT_STYLE + ", angle: " + bearing + " }");
     }
 
     @Override
@@ -139,7 +140,11 @@ public class MyLocationMarkerManager implements LocationListener {
     }
 
     public static boolean deviceHasGpsCapability(Context context) {
-        LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-        return locationManager.getProvider(LocationManager.GPS_PROVIDER) != null;
+        int gpsPermission = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION);
+        if (gpsPermission == PackageManager.PERMISSION_GRANTED) {
+            LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+            return locationManager.getProvider(LocationManager.GPS_PROVIDER) != null;
+        }
+        return false;
     }
 }

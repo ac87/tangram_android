@@ -43,7 +43,7 @@ public class RouteManager {
         Polyline polyline = new Polyline(routeLngLats, null);
 
         routeMarker.setPolyline(polyline);
-        routeMarker.setStyling(DEFAULT_STYLE);
+        routeMarker.setStylingFromString(DEFAULT_STYLE);
     }
 
     @NonNull

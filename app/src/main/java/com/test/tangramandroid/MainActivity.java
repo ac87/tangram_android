@@ -1,20 +1,32 @@
 package com.test.tangramandroid;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.pm.PackageManager;
+import android.graphics.PointF;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
+import com.mapzen.tangram.LabelPickResult;
 import com.mapzen.tangram.LngLat;
 import com.mapzen.tangram.MapController;
 import com.mapzen.tangram.MapView;
+import com.mapzen.tangram.MarkerPickResult;
+import com.mapzen.tangram.SceneUpdate;
+import com.mapzen.tangram.SceneUpdateError;
+import com.mapzen.tangram.TouchInput;
 
-public class MainActivity extends AppCompatActivity implements MapView.OnMapReadyCallback {
+import java.util.ArrayList;
+import java.util.Map;
+
+public class MainActivity extends AppCompatActivity implements MapView.OnMapReadyCallback, MapController.FeaturePickListener, MapController.LabelPickListener, MapController.MarkerPickListener, MapController.SceneUpdateErrorListener, TouchInput.TapResponder {
 
     private static final int REQUEST_READWRITE_STORAGE = 123;
 
@@ -27,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements MapView.OnMapRead
     private RouteManager route;
 
     private boolean isVector = true;
+
+    private final String apiKey = "vector-tiles-tyHL4AY"; // change this.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +70,10 @@ public class MainActivity extends AppCompatActivity implements MapView.OnMapRead
             }
         });
 
-        mapView.getMapAsync(this, getBaseScene(isVector));
+
+        final ArrayList<SceneUpdate> sceneUpdates = new ArrayList<>(1);
+        sceneUpdates.add(new SceneUpdate("global.sdk_mapzen_api_key", apiKey));
+        mapView.getMapAsync(this, getBaseScene(isVector), isVector ? sceneUpdates : null);
         setSourceToggleDrawable(buttonToggle);
     }
 
@@ -68,6 +85,8 @@ public class MainActivity extends AppCompatActivity implements MapView.OnMapRead
         @Override
         public void run() {
             mapController.loadSceneFile(getBaseScene(isVector));
+            if (isVector)
+                mapController.queueSceneUpdate(new SceneUpdate("global.sdk_mapzen_api_key", apiKey));
         }
     };
 
@@ -90,11 +109,104 @@ public class MainActivity extends AppCompatActivity implements MapView.OnMapRead
                 Log.d(TAG, "View complete");
             }
         });
+        mapController.setTapResponder(this);
+        mapController.setFeaturePickListener(this);
+        mapController.setLabelPickListener(this);
+        mapController.setMarkerPickListener(this);
+        mapController.setSceneUpdateErrorListener(this);
+        mapController.setPickRadius(20);
 
         if (MyLocationMarkerManager.deviceHasGpsCapability(this))
             myLocation = new MyLocationMarkerManager(this, mapController, findViewById(R.id.buttonMyLocation));
 
         route = new RouteManager(mapController);
+    }
+
+    @Override
+    public boolean onSingleTapUp(float x, float y) {
+        return false;
+    }
+
+    @Override
+    public boolean onSingleTapConfirmed(float x, float y) {
+
+        LngLat tappedPoint = mapController.screenPositionToLngLat(new PointF(x, y));
+
+        mapController.pickFeature(x, y);
+        mapController.pickLabel(x, y);
+        mapController.pickMarker(x, y);
+
+        mapController.setPositionEased(tappedPoint, 500);
+
+        return true;
+    }
+
+    @Override
+    public void onFeaturePick(Map<String, String> properties, float positionX, float positionY) {
+        if (properties.isEmpty()) {
+            Log.d(TAG, "Empty selection");
+            return;
+        }
+
+        String name = properties.get("name");
+        if (name == null || name.isEmpty()) {
+            name = "unnamed";
+        }
+
+        Log.d(TAG, "Picked: " + name);
+        final String message = name;
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getApplicationContext(),
+                        "Selected: " + message,
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    @Override
+    public void onLabelPick(LabelPickResult labelPickResult, float positionX, float positionY) {
+        if (labelPickResult == null) {
+            Log.d(TAG, "Empty label selection");
+            return;
+        }
+
+        String name = labelPickResult.getProperties().get("name");
+        if (name.isEmpty()) {
+            name = "unnamed";
+        }
+
+        Log.d(TAG, "Picked label: " + name);
+        final String message = name;
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getApplicationContext(),
+                        "Selected label: " + message,
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void onMarkerPick(MarkerPickResult markerPickResult, float positionX, float positionY) {
+        if (markerPickResult == null) {
+            Log.d(TAG, "Empty marker selection");
+            return;
+        }
+
+        Log.d(TAG, "Picked marker: " + markerPickResult.getMarker().getMarkerId());
+        final String message = String.valueOf(markerPickResult.getMarker().getMarkerId());
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getApplicationContext(),
+                        "Selected Marker: " + message,
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -138,5 +250,12 @@ public class MainActivity extends AppCompatActivity implements MapView.OnMapRead
     public void onLowMemory() {
         super.onLowMemory();
         mapView.onLowMemory();
+    }
+
+    @Override
+    public void onSceneUpdateError(SceneUpdateError sceneUpdateError) {
+        Log.d(TAG, "Scene update errors "
+                + sceneUpdateError.getSceneUpdate().toString()
+                + " " + sceneUpdateError.getError().toString());
     }
 }
