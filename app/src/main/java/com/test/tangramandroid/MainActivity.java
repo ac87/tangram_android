@@ -71,10 +71,16 @@ public class MainActivity extends AppCompatActivity implements MapView.OnMapRead
         });
 
 
+        mapView.getMapAsync(this, getBaseScene(isVector), getSceneUpdates());
+        setSourceToggleDrawable(buttonToggle);
+    }
+
+    private ArrayList<SceneUpdate> getSceneUpdates() {
+        if (!isVector)
+            return null;
         final ArrayList<SceneUpdate> sceneUpdates = new ArrayList<>(1);
         sceneUpdates.add(new SceneUpdate("global.sdk_mapzen_api_key", apiKey));
-        mapView.getMapAsync(this, getBaseScene(isVector), isVector ? sceneUpdates : null);
-        setSourceToggleDrawable(buttonToggle);
+        return sceneUpdates;
     }
 
     private void setSourceToggleDrawable(ImageButton buttonToggle) {
@@ -84,9 +90,7 @@ public class MainActivity extends AppCompatActivity implements MapView.OnMapRead
     private Runnable reloadRunnable = new Runnable() {
         @Override
         public void run() {
-            mapController.loadSceneFile(getBaseScene(isVector));
-            if (isVector)
-                mapController.queueSceneUpdate(new SceneUpdate("global.sdk_mapzen_api_key", apiKey));
+            mapController.loadSceneFile(getBaseScene(isVector), getSceneUpdates());
         }
     };
 
