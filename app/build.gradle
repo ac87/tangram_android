@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.1"
+    buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "com.test.tangramandroid"
         minSdkVersion 16
@@ -24,8 +24,8 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.mapzen.tangram:tangram:0.6.0@aar'
+    compile 'com.android.support:appcompat-v7:25.4.0'
+    compile 'com.mapzen.tangram:tangram:0.8.0-SNAPSHOT@aar'
     compile 'com.squareup.okhttp3:okhttp:3.5.0'
     testCompile 'junit:junit:4.12'
 }

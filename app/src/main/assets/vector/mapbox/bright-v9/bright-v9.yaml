@@ -1,0 +1,1486 @@
+# Mapbox 'Bright' Version:8 (Converted: 20/07/2017 09:30)
+labels-global:
+        - &text_visible         true
+        - &debug_visible        true
+global:
+    default_text_source: |
+        function() {
+            if (feature.ref && feature.name_en ) { return feature.ref +" " + feature.name_en; } else if (feature.name_en) { return feature.name_en; } else { return feature.ref; }
+        }
+    name_source: |
+        function() {
+            { return feature.name_en; }
+        }
+    ref_source: |
+        function() {
+            if (feature.ref) { return feature.ref; } else if (feature.name) { return feature.name; } else { return "No Ref"; }
+        }
+styles:
+    rail-dash:
+        base: lines
+        texcoords: true
+        shaders:
+            defines:
+                DASH_SIZE: .9
+                DASH_SCALE: .6
+            blocks:
+                filter: |
+                    if (step(DASH_SIZE, fract(v_texcoord.y * DASH_SCALE)) == 0.)
+                    {
+                    discard;
+                    }
+                lines-dash:
+                    base: lines
+                    dash: [2,2]
+    icons:
+        base: points
+        texture: pois
+        interactive: true
+cameras:
+    perspective:
+        type: perspective
+        vanishing_point: [0, -500]
+textures:
+    pois:
+        url: images/bright-v9.png
+        filtering: mipmap
+        sprites:
+            motorway_6: [1,1,48,16]
+            motorway_5: [1,19,43,16]
+            motorway_4: [51,1,37,16]
+            motorway_3: [51,19,30,16]
+            motorway_2: [1,37,23,16]
+            art-gallery-15: [1,55,19,19]
+            attraction-15: [22,55,19,19]
+            bakery-15: [43,55,19,19]
+            bank-15: [64,55,19,19]
+            bar-15: [90,1,19,19]
+            beer-15: [90,22,19,19]
+            bicycle-15: [90,43,19,19]
+            bicycle-share-15: [1,76,19,19]
+            bus-15: [22,76,19,19]
+            cafe-15: [43,76,19,19]
+            campsite-15: [64,76,19,19]
+            car-15: [85,76,19,19]
+            castle-15: [111,1,19,19]
+            cemetery-15: [111,22,19,19]
+            cinema-15: [111,43,19,19]
+            circle-15: [111,64,19,19]
+            circle-stroked-15: [1,97,19,19]
+            clothing-store-15: [22,97,19,19]
+            college-15: [43,97,19,19]
+            dentist-15: [64,97,19,19]
+            doctor-15: [85,97,19,19]
+            dog-park-15: [106,97,19,19]
+            drinking-water-15: [132,1,19,19]
+            embassy-15: [132,22,19,19]
+            entrance-15: [132,43,19,19]
+            fast-food-15: [132,64,19,19]
+            ferry-15: [132,85,19,19]
+            fire-station-15: [1,118,19,19]
+            fuel-15: [22,118,19,19]
+            garden-15: [43,118,19,19]
+            golf-15: [64,118,19,19]
+            grocery-15: [85,118,19,19]
+            harbor-15: [106,118,19,19]
+            heliport-15: [127,118,19,19]
+            hospital-15: [153,1,19,19]
+            ice-cream-15: [153,22,19,19]
+            information-15: [153,43,19,19]
+            laundry-15: [153,64,19,19]
+            library-15: [153,85,19,19]
+            lodging-15: [153,106,19,19]
+            marker-15: [1,139,19,19]
+            monument-15: [22,139,19,19]
+            mountain-15: [43,139,19,19]
+            museum-15: [64,139,19,19]
+            music-15: [85,139,19,19]
+            park-15: [106,139,19,19]
+            pharmacy-15: [127,139,19,19]
+            picnic-site-15: [148,139,19,19]
+            place-of-worship-15: [174,1,19,19]
+            playground-15: [174,22,19,19]
+            police-15: [174,43,19,19]
+            post-15: [174,64,19,19]
+            prison-15: [174,85,19,19]
+            rail-15: [174,106,19,19]
+            rail-light-15: [174,127,19,19]
+            rail-metro-15: [1,160,19,19]
+            religious-christian-15: [22,160,19,19]
+            religious-jewish-15: [43,160,19,19]
+            religious-muslim-15: [64,160,19,19]
+            restaurant-15: [85,160,19,19]
+            rocket-15: [106,160,19,19]
+            school-15: [127,160,19,19]
+            shop-15: [148,160,19,19]
+            stadium-15: [169,160,19,19]
+            star-15: [195,1,19,19]
+            suitcase-15: [195,22,19,19]
+            swimming-15: [195,43,19,19]
+            theatre-15: [195,64,19,19]
+            toilet-15: [195,85,19,19]
+            town-hall-15: [195,106,19,19]
+            triangle-15: [195,127,19,19]
+            triangle-stroked-15: [195,148,19,19]
+            veterinary-15: [1,181,19,19]
+            volcano-15: [22,181,19,19]
+            zoo-15: [43,181,19,19]
+            airfield-15: [64,181,19,19]
+            alcohol-shop-15: [85,181,19,19]
+            amusement-park-15: [106,181,19,19]
+            airport-15: [127,181,19,19]
+            aquarium-15: [148,181,19,19]
+            motorway_1: [26,37,16,16]
+            ice-cream-11: [44,37,15,15]
+            airport-11: [61,37,15,15]
+            alcohol-shop-11: [169,181,15,15]
+            amusement-park-11: [186,181,15,15]
+            aquarium-11: [216,1,15,15]
+            art-gallery-11: [216,18,15,15]
+            attraction-11: [216,35,15,15]
+            bakery-11: [216,52,15,15]
+            bank-11: [216,69,15,15]
+            bar-11: [216,86,15,15]
+            beer-11: [216,103,15,15]
+            bicycle-11: [216,120,15,15]
+            bicycle-share-11: [216,137,15,15]
+            bus-11: [216,154,15,15]
+            cafe-11: [216,171,15,15]
+            campsite-11: [1,202,15,15]
+            car-11: [18,202,15,15]
+            castle-11: [35,202,15,15]
+            cemetery-11: [52,202,15,15]
+            cinema-11: [69,202,15,15]
+            circle-11: [86,202,15,15]
+            circle-stroked-11: [103,202,15,15]
+            clothing-store-11: [120,202,15,15]
+            college-11: [137,202,15,15]
+            dentist-11: [154,202,15,15]
+            doctor-11: [171,202,15,15]
+            dog-park-11: [188,202,15,15]
+            drinking-water-11: [205,202,15,15]
+            embassy-11: [233,1,15,15]
+            entrance-11: [233,18,15,15]
+            fast-food-11: [233,35,15,15]
+            ferry-11: [233,52,15,15]
+            fire-station-11: [233,69,15,15]
+            fuel-11: [233,86,15,15]
+            garden-11: [233,103,15,15]
+            golf-11: [233,120,15,15]
+            grocery-11: [233,137,15,15]
+            harbor-11: [233,154,15,15]
+            heliport-11: [233,171,15,15]
+            hospital-11: [233,188,15,15]
+            airfield-11: [1,219,15,15]
+            information-11: [18,219,15,15]
+            laundry-11: [35,219,15,15]
+            library-11: [52,219,15,15]
+            lodging-11: [69,219,15,15]
+            marker-11: [86,219,15,15]
+            monument-11: [103,219,15,15]
+            mountain-11: [120,219,15,15]
+            museum-11: [137,219,15,15]
+            music-11: [154,219,15,15]
+            park-11: [171,219,15,15]
+            pharmacy-11: [188,219,15,15]
+            picnic-site-11: [205,219,15,15]
+            place-of-worship-11: [222,219,15,15]
+            playground-11: [250,1,15,15]
+            police-11: [250,18,15,15]
+            post-11: [250,35,15,15]
+            prison-11: [250,52,15,15]
+            rail-11: [250,69,15,15]
+            rail-light-11: [250,86,15,15]
+            rail-metro-11: [250,103,15,15]
+            religious-christian-11: [250,120,15,15]
+            religious-jewish-11: [250,137,15,15]
+            religious-muslim-11: [250,154,15,15]
+            restaurant-11: [250,171,15,15]
+            rocket-11: [250,188,15,15]
+            school-11: [250,205,15,15]
+            shop-11: [1,236,15,15]
+            stadium-11: [18,236,15,15]
+            star-11: [35,236,15,15]
+            suitcase-11: [52,236,15,15]
+            swimming-11: [69,236,15,15]
+            theatre-11: [86,236,15,15]
+            toilet-11: [103,236,15,15]
+            town-hall-11: [120,236,15,15]
+            triangle-11: [137,236,15,15]
+            triangle-stroked-11: [154,236,15,15]
+            veterinary-11: [171,236,15,15]
+            volcano-11: [188,236,15,15]
+            zoo-11: [205,236,15,15]
+            wave: [250,222,14,6]
+scene:
+    background:
+        color: '#f8f4f0'
+sources:
+    mapbox:
+        url: 'https://a.tiles.mapbox.com/v4/mapbox.mapbox-streets-v7/{z}/{x}/{y}.vector.pbf?access_token=pk.eyJ1IjoiYmNhbXBlciIsImEiOiJWUmh3anY0In0.1fgSTNWpQV8-5sBjGbBzGg'
+        type: 'MVT'
+layers:
+    landuse_overlay:
+        data: { source: mapbox }
+        landuse_overlay_national_park:
+            filter:
+                class: national_park
+            draw:
+                polygons:
+                    order: 2
+                    color: '#d8e8c8'
+    landuse:
+        data: { source: mapbox }
+        landuse_park:
+            filter:
+                class: park
+            draw:
+                polygons:
+                    order: 2
+                    color: '#d8e8c8'
+        landuse_cemetery:
+            filter:
+                class: cemetery
+            draw:
+                polygons:
+                    order: 3
+                    color: '#e0e4dd'
+        landuse_hospital:
+            filter:
+                class: hospital
+            draw:
+                polygons:
+                    order: 3
+                    color: '#fde'
+        landuse_school:
+            filter:
+                class: school
+            draw:
+                polygons:
+                    order: 3
+                    color: '#f0e8f8'
+        landuse_wood:
+            filter:
+                class: wood
+            draw:
+                polygons:
+                    order: 3
+                    color: '#6a4'
+    waterway:
+        data: { source: mapbox }
+        waterway:
+            filter:
+                not: { class: [ river,stream,canal ] }
+            draw:
+                lines:
+                    order: 4
+                    color: '#a0c8f0'
+                    width: [[13,0.5px],[14,1.07px],[15,1.16px],[16,1.29px],[17,1.44px],[18,1.65px],[19,1.91px],[20,2px]]
+                    cap: round
+        waterway_river:
+            filter:
+                class: river
+            draw:
+                lines:
+                    order: 4
+                    color: '#a0c8f0'
+                    width: [[11,0.5px],[12,1.21px],[13,1.47px],[14,1.78px],[15,2.14px],[16,2.59px],[17,3.12px],[18,3.75px],[19,4.52px],[20,6px]]
+                    cap: round
+        waterway_stream_canal:
+            filter:
+                class: [ stream,canal ]
+            draw:
+                lines:
+                    order: 4
+                    color: '#a0c8f0'
+                    width: [[13,0.5px],[14,1.26px],[15,1.6px],[16,2.05px],[17,2.63px],[18,3.38px],[19,4.35px],[20,6px]]
+                    cap: round
+    water:
+        data: { source: mapbox }
+        water:
+            draw:
+                polygons:
+                    order: 5
+                    color: 'white'
+        water_offset:
+            draw:
+                polygons:
+                    order: 5
+                    color: 'white'
+        water_pattern:
+            draw:
+                polygons:
+                    order: 5
+    aeroway:
+        data: { source: mapbox }
+        aeroway_fill:
+            filter:
+                all:
+                    - $geometry: polygon
+                    - $zoom: { min: 11 }
+            draw:
+                polygons:
+                    order: 5
+                    color: '#f0ede9'
+        aeroway_runway:
+            filter:
+                all:
+                    - $zoom: { min: 11 }
+                    - $geometry: line
+                    - type: runway
+            draw:
+                lines:
+                    order: 25
+                    color: '#f0ede9'
+                    width: [[11,3px],[12,4px],[13,4.61px],[14,5.33px],[15,6.2px],[16,7.25px],[17,8.5px],[18,10.01px],[19,11.81px],[20,16px]]
+        aeroway_taxiway:
+            filter:
+                all:
+                    - $zoom: { min: 11 }
+                    - $geometry: line
+                    - type: taxiway
+            draw:
+                lines:
+                    order: 25
+                    color: '#f0ede9'
+                    width: [[11,0.5px],[12,1.21px],[13,1.47px],[14,1.78px],[15,2.14px],[16,2.59px],[17,3.12px],[18,3.75px],[19,4.52px],[20,6px]]
+    building:
+        data: { source: mapbox }
+        building:
+            draw:
+                polygons:
+                    order: 30
+                    outline:
+                        color: '#dfdbd7'
+                    color: '#f2eae2'
+        building_top:
+            draw:
+                polygons:
+                    order: 30
+                    outline:
+                        color: '#dfdbd7'
+                    color: '#f2eae2'
+    road-case:
+        data: { source: mapbox, layer: road }
+        tunnel_motorway_link:
+            filter:
+                all:
+                    - $zoom: { min: 9 }
+                    - structure: tunnel
+                    - class: motorway_link
+            draw:
+                lines-dash:
+                    order: 25
+                    outline:
+                        width: [[12,1px],[13,3px],[14,4px],[15,3.87px],[16,5px],[17,6.35px],[18,7.97px],[19,9.91px],[20,15px]]
+                        color: '#e9ac77'
+                    color: '#fc8'
+                    width: [[13,0px],[13,1.5px],[14,2.5px],[15,1.91px],[16,2.84px],[17,3.95px],[18,5.28px],[19,6.87px],[20,11.5px]]
+        tunnel_service_track:
+            filter:
+                all:
+                    - structure: tunnel
+                    - class: [ service,track ]
+            draw:
+                lines-dash:
+                    order: 27
+                    outline:
+                        width: [[15,1px],[16,4px],[17,3.27px],[18,4.43px],[19,5.81px],[20,11px]]
+                        color: '#cfcdca'
+                    color: '#fff'
+                    width: [[16,0px],[16,2px],[17,1.22px],[18,2.09px],[19,3.13px],[20,7.5px]]
+        tunnel_link:
+            filter:
+                all:
+                    - structure: tunnel
+                    - class: link
+            draw:
+                lines:
+                    order: 40
+                    outline:
+                        width: [[12,1px],[13,3px],[14,4px],[15,3.87px],[16,5px],[17,6.35px],[18,7.97px],[19,9.91px],[20,15px]]
+                        color: '#e9ac77'
+                    color: '#fff4c6'
+                    width: [[13,0px],[13,1.5px],[14,2.5px],[15,1.91px],[16,2.84px],[17,3.95px],[18,5.28px],[19,6.87px],[20,11.5px]]
+        tunnel_street:
+            filter:
+                all:
+                    - structure: tunnel
+                    - class: [ street,street_limited ]
+            draw:
+                lines:
+                    order: 40
+                    outline:
+                        width: [[12,0.5px],[13,1px],[14,4px],[15,3.45px],[16,4.62px],[17,6.02px],[18,7.7px],[19,9.71px],[20,15px]]
+                        color: '#cfcdca'
+                    color: '#fff'
+                    width: [[14,0px],[14,2.5px],[15,1.27px],[16,2.19px],[17,3.3px],[18,4.63px],[19,6.23px],[20,11.5px]]
+        tunnel_secondary_tertiary:
+            filter:
+                all:
+                    - $zoom: { min: 10 }
+                    - structure: tunnel
+                    - type: [ secondary,tertiary ]
+            draw:
+                lines:
+                    order: 29
+                    outline:
+                        width: [[8,1.5px],[9,2.35px],[10,2.76px],[11,3.27px],[12,3.87px],[13,4.59px],[14,5.45px],[15,6.49px],[16,7.74px],[17,9.23px],[18,11.03px],[19,13.18px],[20,17px]]
+                        color: '#e9ac77'
+                    color: '#fff4c6'
+                    width: [[7,0px],[7,0.5px],[8,0.69px],[9,0.91px],[10,1.18px],[11,1.5px],[12,1.89px],[13,2.36px],[14,2.91px],[15,3.58px],[16,4.39px],[17,5.35px],[18,6.51px],[19,7.9px],[20,10px]]
+        tunnel_trunk_primary:
+            filter:
+                all:
+                    - $zoom: { min: 9 }
+                    - structure: tunnel
+                    - type: [ trunk,primary ]
+            draw:
+                lines:
+                    order: 32
+                    outline:
+                        width: [[5,0.4px],[6,0.6px],[7,1.5px],[8,1.92px],[9,2.41px],[10,2.99px],[11,3.68px],[12,4.52px],[13,5.53px],[14,6.73px],[15,8.18px],[16,9.91px],[17,12px],[18,14.5px],[19,17.5px],[20,22px]]
+                        color: '#e9ac77'
+                    color: '#fff4c6'
+                    width: [[7,0px],[7,0.5px],[8,0.84px],[9,1.24px],[10,1.72px],[11,2.31px],[12,3px],[13,3.84px],[14,4.85px],[15,6.05px],[16,7.5px],[17,9.23px],[18,11.32px],[19,13.82px],[20,18px]]
+        tunnel_motorway:
+            filter:
+                all:
+                    - $zoom: { min: 9 }
+                    - structure: tunnel
+                    - class: motorway
+            draw:
+                lines-dash:
+                    order: 31
+                    outline:
+                        width: [[5,0.4px],[6,0.6px],[7,1.5px],[8,1.92px],[9,2.41px],[10,2.99px],[11,3.68px],[12,4.52px],[13,5.53px],[14,6.73px],[15,8.18px],[16,9.91px],[17,12px],[18,14.5px],[19,17.5px],[20,22px]]
+                        color: '#e9ac77'
+                    color: '#ffdaa6'
+                    width: [[7,0px],[7,0.5px],[8,0.84px],[9,1.24px],[10,1.72px],[11,2.31px],[12,3px],[13,3.84px],[14,4.85px],[15,6.05px],[16,7.5px],[17,9.23px],[18,11.32px],[19,13.82px],[20,18px]]
+        road_motorway_link:
+            filter:
+                all:
+                    - $zoom: { min: 13 }
+                    - class: motorway_link
+                    - not: { structure: [ bridge,tunnel ] }
+            draw:
+                lines:
+                    order: 25
+                    outline:
+                        width: [[12,1px],[13,3px],[14,4px],[15,3.87px],[16,5px],[17,6.35px],[18,7.97px],[19,9.91px],[20,15px]]
+                        color: '#e9ac77'
+                    color: '#fc8'
+                    width: [[13,0px],[13,1.5px],[14,2.5px],[15,1.91px],[16,2.84px],[17,3.95px],[18,5.28px],[19,6.87px],[20,11.5px]]
+        road_service_track:
+            filter:
+                all:
+                    - class: [ service,track ]
+                    - not: { structure: [ bridge,tunnel ] }
+            draw:
+                lines:
+                    order: 27
+                    outline:
+                        width: [[15,1px],[16,4px],[17,3.27px],[18,4.43px],[19,5.81px],[20,11px]]
+                        color: '#cfcdca'
+                    color: '#fff'
+                    width: [[16,0px],[16,2px],[17,1.22px],[18,2.09px],[19,3.13px],[20,7.5px]]
+        road_link:
+            filter:
+                all:
+                    - $zoom: { min: 14 }
+                    - class: link
+                    - not: { structure: [ bridge,tunnel ] }
+            draw:
+                lines:
+                    order: 40
+                    outline:
+                        width: [[12,1px],[13,3px],[14,4px],[15,3.87px],[16,5px],[17,6.35px],[18,7.97px],[19,9.91px],[20,15px]]
+                        color: '#e9ac77'
+                    color: '#fea'
+                    width: [[13,0px],[13,1.5px],[14,2.5px],[15,1.91px],[16,2.84px],[17,3.95px],[18,5.28px],[19,6.87px],[20,11.5px]]
+        road_street:
+            filter:
+                all:
+                    - $geometry: line
+                    - class: [ street,street_limited ]
+                    - not: { structure: [ bridge,tunnel ] }
+            draw:
+                lines:
+                    order: 40
+                    outline:
+                        width: [[12,0.5px],[13,1px],[14,4px],[15,3.45px],[16,4.62px],[17,6.02px],[18,7.7px],[19,9.71px],[20,15px]]
+                        color: '#cfcdca'
+                    color: '#fff'
+                    width: [[14,0px],[14,2.5px],[15,1.27px],[16,2.19px],[17,3.3px],[18,4.63px],[19,6.23px],[20,11.5px]]
+        road_secondary_tertiary:
+            filter:
+                all:
+                    - $zoom: { min: 10 }
+                    - type: [ secondary,tertiary ]
+                    - not: { structure: [ bridge,tunnel ] }
+            draw:
+                lines:
+                    order: 29
+                    outline:
+                        width: [[8,1.5px],[9,2.35px],[10,2.76px],[11,3.27px],[12,3.87px],[13,4.59px],[14,5.45px],[15,6.49px],[16,7.74px],[17,9.23px],[18,11.03px],[19,13.18px],[20,17px]]
+                        color: '#e9ac77'
+                    color: '#fea'
+                    width: [[7,0px],[8,0.5px],[9,1.03px],[10,1.38px],[11,1.8px],[12,2.31px],[13,2.91px],[14,3.64px],[15,4.51px],[16,5.55px],[17,6.81px],[18,8.31px],[19,10.12px],[20,13px]]
+        road_trunk_primary:
+            filter:
+                all:
+                    - $zoom: { min: 9 }
+                    - type: [ trunk,primary ]
+                    - not: { structure: [ bridge,tunnel ] }
+            draw:
+                lines:
+                    order: 32
+                    outline:
+                        width: [[5,0.4px],[6,0.6px],[7,1.5px],[8,1.92px],[9,2.41px],[10,2.99px],[11,3.68px],[12,4.52px],[13,5.53px],[14,6.73px],[15,8.18px],[16,9.91px],[17,12px],[18,14.5px],[19,17.5px],[20,22px]]
+                        color: '#e9ac77'
+                    color: '#fea'
+                    width: [[7,0px],[7,0.5px],[8,0.84px],[9,1.24px],[10,1.72px],[11,2.31px],[12,3px],[13,3.84px],[14,4.85px],[15,6.05px],[16,7.5px],[17,9.23px],[18,11.32px],[19,13.82px],[20,18px]]
+        road_motorway:
+            filter:
+                all:
+                    - $zoom: { min: 9 }
+                    - class: motorway
+                    - not: { structure: [ bridge,tunnel ] }
+            draw:
+                lines:
+                    order: 31
+                    outline:
+                        width: [[5,0.4px],[6,0.6px],[7,1.5px],[8,1.92px],[9,2.41px],[10,2.99px],[11,3.68px],[12,4.52px],[13,5.53px],[14,6.73px],[15,8.18px],[16,9.91px],[17,12px],[18,14.5px],[19,17.5px],[20,22px]]
+                        color: '#e9ac77'
+                    color: '#fc8'
+                    width: [[7,0px],[7,0.5px],[8,0.84px],[9,1.24px],[10,1.72px],[11,2.31px],[12,3px],[13,3.84px],[14,4.85px],[15,6.05px],[16,7.5px],[17,9.23px],[18,11.32px],[19,13.82px],[20,18px]]
+        bridge_motorway_link:
+            filter:
+                all:
+                    - $zoom: { min: 9 }
+                    - structure: bridge
+                    - class: motorway_link
+            draw:
+                lines:
+                    order: 55
+                    outline:
+                        width: [[12,1px],[13,3px],[14,4px],[15,3.87px],[16,5px],[17,6.35px],[18,7.97px],[19,9.91px],[20,15px]]
+                        color: '#e9ac77'
+                    color: '#fc8'
+                    width: [[13,0px],[13,1.5px],[14,2.5px],[15,1.91px],[16,2.84px],[17,3.95px],[18,5.28px],[19,6.87px],[20,11.5px]]
+        bridge_service_track:
+            filter:
+                all:
+                    - structure: bridge
+                    - class: [ service,track ]
+            draw:
+                lines:
+                    order: 57
+                    outline:
+                        width: [[15,1px],[16,4px],[17,3.27px],[18,4.43px],[19,5.81px],[20,11px]]
+                        color: '#cfcdca'
+                    color: '#fff'
+                    width: [[16,0px],[16,2px],[17,1.22px],[18,2.09px],[19,3.13px],[20,7.5px]]
+        bridge_link:
+            filter:
+                all:
+                    - structure: bridge
+                    - class: link
+            draw:
+                lines:
+                    order: 60
+                    outline:
+                        width: [[12,1px],[13,3px],[14,4px],[15,3.87px],[16,5px],[17,6.35px],[18,7.97px],[19,9.91px],[20,15px]]
+                        color: '#e9ac77'
+                    color: '#fea'
+                    width: [[13,0px],[13,1.5px],[14,2.5px],[15,1.91px],[16,2.84px],[17,3.95px],[18,5.28px],[19,6.87px],[20,11.5px]]
+        bridge_street:
+            filter:
+                all:
+                    - structure: bridge
+                    - class: [ street,street_limited ]
+            draw:
+                lines:
+                    order: 60
+                    outline:
+                        width: [[12,0.5px],[13,1px],[14,4px],[15,3.45px],[16,4.62px],[17,6.02px],[18,7.7px],[19,9.71px],[20,15px]]
+                        color: '#cfcdca'
+                    color: '#fff'
+                    width: [[14,0px],[14,2.5px],[15,1.27px],[16,2.19px],[17,3.3px],[18,4.63px],[19,6.23px],[20,11.5px]]
+        bridge_secondary_tertiary:
+            filter:
+                all:
+                    - $zoom: { min: 10 }
+                    - structure: bridge
+                    - type: [ secondary,tertiary ]
+            draw:
+                lines:
+                    order: 59
+                    outline:
+                        width: [[8,1.5px],[9,2.35px],[10,2.76px],[11,3.27px],[12,3.87px],[13,4.59px],[14,5.45px],[15,6.49px],[16,7.74px],[17,9.23px],[18,11.03px],[19,13.18px],[20,17px]]
+                        color: '#e9ac77'
+                    color: '#fea'
+                    width: [[7,0px],[7,0.5px],[8,0.69px],[9,0.91px],[10,1.18px],[11,1.5px],[12,1.89px],[13,2.36px],[14,2.91px],[15,3.58px],[16,4.39px],[17,5.35px],[18,6.51px],[19,7.9px],[20,10px]]
+        bridge_trunk_primary:
+            filter:
+                all:
+                    - $zoom: { min: 9 }
+                    - structure: bridge
+                    - type: [ trunk,primary ]
+            draw:
+                lines:
+                    order: 62
+                    outline:
+                        width: [[5,0.4px],[6,0.6px],[7,1.5px],[8,1.92px],[9,2.41px],[10,2.99px],[11,3.68px],[12,4.52px],[13,5.53px],[14,6.73px],[15,8.18px],[16,9.91px],[17,12px],[18,14.5px],[19,17.5px],[20,22px]]
+                        color: '#e9ac77'
+                    color: '#fea'
+                    width: [[7,0px],[7,0.5px],[8,0.84px],[9,1.24px],[10,1.72px],[11,2.31px],[12,3px],[13,3.84px],[14,4.85px],[15,6.05px],[16,7.5px],[17,9.23px],[18,11.32px],[19,13.82px],[20,18px]]
+        bridge_motorway:
+            filter:
+                all:
+                    - $zoom: { min: 9 }
+                    - structure: bridge
+                    - class: motorway
+            draw:
+                lines:
+                    order: 61
+                    outline:
+                        width: [[5,0.4px],[6,0.6px],[7,1.5px],[8,1.92px],[9,2.41px],[10,2.99px],[11,3.68px],[12,4.52px],[13,5.53px],[14,6.73px],[15,8.18px],[16,9.91px],[17,12px],[18,14.5px],[19,17.5px],[20,22px]]
+                        color: '#e9ac77'
+                    color: '#fc8'
+                    width: [[7,0px],[7,0.5px],[8,0.84px],[9,1.24px],[10,1.72px],[11,2.31px],[12,3px],[13,3.84px],[14,4.85px],[15,6.05px],[16,7.5px],[17,9.23px],[18,11.32px],[19,13.82px],[20,18px]]
+    road:
+        data: { source: mapbox }
+        tunnel_path_pedestrian:
+            filter:
+                all:
+                    - $geometry: line
+                    - structure: tunnel
+                    - class: [ path,pedestrian ]
+            draw:
+                lines-dash:
+                    order: 40
+                    color: '#cba'
+                    width: [[15,1.2px],[16,1.93px],[17,2.2px],[18,2.52px],[19,2.91px],[20,4px]]
+        tunnel_major_rail:
+            filter:
+                all:
+                    - structure: tunnel
+                    - class: [ major_rail,minor_rail ]
+            draw:
+                lines:
+                    order: 40
+                    color: '#bbb'
+                    width: [[14,0.4px],[15,0.75px],[16,1.1px],[17,1.27px],[18,1.5px],[19,1.83px],[20,2px]]
+        road_path_pedestrian:
+            filter:
+                all:
+                    - $geometry: line
+                    - class: [ path,pedestrian ]
+                    - not: { structure: [ bridge,tunnel ] }
+            draw:
+                lines-dash:
+                    order: 40
+                    color: '#cba'
+                    width: [[15,1.2px],[16,1.93px],[17,2.2px],[18,2.52px],[19,2.91px],[20,4px]]
+        road_major_rail:
+            filter:
+                all:
+                    - class: major_rail
+                    - not: { structure: [ bridge,tunnel ] }
+            draw:
+                lines:
+                    order: 40
+                    color: '#bbb'
+                    width: [[14,0.4px],[15,0.75px],[16,1.1px],[17,1.27px],[18,1.5px],[19,1.83px],[20,2px]]
+        bridge_path_pedestrian:
+            filter:
+                all:
+                    - $geometry: line
+                    - structure: bridge
+                    - class: [ path,pedestrian ]
+            draw:
+                lines-dash:
+                    order: 60
+                    color: '#cba'
+                    width: [[15,1.2px],[16,1.93px],[17,2.2px],[18,2.52px],[19,2.91px],[20,4px]]
+        bridge_major_rail:
+            filter:
+                all:
+                    - structure: bridge
+                    - class: major_rail
+            draw:
+                lines:
+                    order: 60
+                    color: '#bbb'
+                    width: [[14,0.4px],[15,0.75px],[16,1.1px],[17,1.27px],[18,1.5px],[19,1.83px],[20,2px]]
+        tunnel_motorway_link:
+            filter:
+                all:
+                    - $zoom: { min: 8 }
+                    - structure: tunnel
+                    - class: motorway_link
+            draw:
+                lines:
+                    order: 45
+                    color: '#fc8'
+                    width: [[13,0px],[13,1.5px],[14,2.5px],[15,1.91px],[16,2.84px],[17,3.95px],[18,5.28px],[19,6.87px],[20,11.5px]]
+                    join: round
+        tunnel_service_track:
+            filter:
+                all:
+                    - structure: tunnel
+                    - class: [ service,track ]
+            draw:
+                lines:
+                    order: 47
+                    color: '#fff'
+                    width: [[16,0px],[16,2px],[17,1.22px],[18,2.09px],[19,3.13px],[20,7.5px]]
+                    join: round
+        tunnel_link:
+            filter:
+                all:
+                    - structure: tunnel
+                    - class: link
+            draw:
+                lines:
+                    order: 40
+                    color: '#fff4c6'
+                    width: [[13,0px],[13,1.5px],[14,2.5px],[15,1.91px],[16,2.84px],[17,3.95px],[18,5.28px],[19,6.87px],[20,11.5px]]
+                    join: round
+        tunnel_street:
+            filter:
+                all:
+                    - structure: tunnel
+                    - class: [ street,street_limited ]
+            draw:
+                lines:
+                    order: 40
+                    color: '#fff'
+                    width: [[14,0px],[14,2.5px],[15,1.27px],[16,2.19px],[17,3.3px],[18,4.63px],[19,6.23px],[20,11.5px]]
+                    join: round
+        tunnel_secondary_tertiary:
+            filter:
+                all:
+                    - $zoom: { min: 9 }
+                    - structure: tunnel
+                    - type: [ secondary,tertiary ]
+            draw:
+                lines:
+                    order: 49
+                    color: '#fff4c6'
+                    width: [[7,0px],[7,0.5px],[8,0.69px],[9,0.91px],[10,1.18px],[11,1.5px],[12,1.89px],[13,2.36px],[14,2.91px],[15,3.58px],[16,4.39px],[17,5.35px],[18,6.51px],[19,7.9px],[20,10px]]
+                    join: round
+        tunnel_trunk_primary:
+            filter:
+                all:
+                    - $zoom: { min: 8 }
+                    - structure: tunnel
+                    - type: [ trunk,primary ]
+            draw:
+                lines:
+                    order: 52
+                    color: '#fff4c6'
+                    width: [[7,0px],[7,0.5px],[8,0.84px],[9,1.24px],[10,1.72px],[11,2.31px],[12,3px],[13,3.84px],[14,4.85px],[15,6.05px],[16,7.5px],[17,9.23px],[18,11.32px],[19,13.82px],[20,18px]]
+                    join: round
+        tunnel_motorway:
+            filter:
+                all:
+                    - $zoom: { min: 8 }
+                    - structure: tunnel
+                    - class: motorway
+            draw:
+                lines:
+                    order: 51
+                    color: '#ffdaa6'
+                    width: [[7,0px],[7,0.5px],[8,0.84px],[9,1.24px],[10,1.72px],[11,2.31px],[12,3px],[13,3.84px],[14,4.85px],[15,6.05px],[16,7.5px],[17,9.23px],[18,11.32px],[19,13.82px],[20,18px]]
+                    join: round
+        tunnel_major_rail_hatching:
+            filter:
+                all:
+                    - structure: tunnel
+                    - class: [ major_rail,minor_rail ]
+            draw:
+                rail-dash:
+                    order: 40
+                    color: '#bbb'
+                    width: [[15,0px],[15,3px],[16,1.09px],[17,1.93px],[18,3.09px],[19,4.73px],[20,8px]]
+        road_motorway_link:
+            filter:
+                all:
+                    - $zoom: { min: 8 }
+                    - class: motorway_link
+                    - not: { structure: [ bridge,tunnel ] }
+            draw:
+                lines:
+                    order: 45
+                    color: '#fc8'
+                    width: [[13,0px],[13,1.5px],[14,2.5px],[15,1.91px],[16,2.84px],[17,3.95px],[18,5.28px],[19,6.87px],[20,11.5px]]
+                    join: round
+                    cap: round
+        road_service_track:
+            filter:
+                all:
+                    - class: [ service,track ]
+                    - not: { structure: [ bridge,tunnel ] }
+            draw:
+                lines:
+                    order: 47
+                    color: '#fff'
+                    width: [[16,0px],[16,2px],[17,1.22px],[18,2.09px],[19,3.13px],[20,7.5px]]
+                    join: round
+                    cap: round
+        road_link:
+            filter:
+                all:
+                    - class: link
+                    - not: { structure: [ bridge,tunnel ] }
+            draw:
+                lines:
+                    order: 40
+                    color: '#fea'
+                    width: [[13,0px],[13,1.5px],[14,2.5px],[15,1.91px],[16,2.84px],[17,3.95px],[18,5.28px],[19,6.87px],[20,11.5px]]
+                    join: round
+                    cap: round
+        road_street:
+            filter:
+                all:
+                    - $geometry: line
+                    - class: [ street,street_limited ]
+                    - not: { structure: [ bridge,tunnel ] }
+            draw:
+                lines:
+                    order: 40
+                    color: '#fff'
+                    width: [[14,0px],[14,2.5px],[15,1.27px],[16,2.19px],[17,3.3px],[18,4.63px],[19,6.23px],[20,11.5px]]
+                    join: round
+                    cap: round
+        road_secondary_tertiary:
+            filter:
+                all:
+                    - $zoom: { min: 9 }
+                    - type: [ secondary,tertiary ]
+                    - not: { structure: [ bridge,tunnel ] }
+            draw:
+                lines:
+                    order: 49
+                    color: '#fea'
+                    width: [[7,0px],[8,0.5px],[9,1.03px],[10,1.38px],[11,1.8px],[12,2.31px],[13,2.91px],[14,3.64px],[15,4.51px],[16,5.55px],[17,6.81px],[18,8.31px],[19,10.12px],[20,13px]]
+                    join: round
+                    cap: round
+        road_trunk_primary:
+            filter:
+                all:
+                    - $zoom: { min: 8 }
+                    - type: [ trunk,primary ]
+                    - not: { structure: [ bridge,tunnel ] }
+            draw:
+                lines:
+                    order: 52
+                    color: '#fea'
+                    width: [[7,0px],[7,0.5px],[8,0.84px],[9,1.24px],[10,1.72px],[11,2.31px],[12,3px],[13,3.84px],[14,4.85px],[15,6.05px],[16,7.5px],[17,9.23px],[18,11.32px],[19,13.82px],[20,18px]]
+                    join: round
+                    cap: round
+        road_motorway:
+            filter:
+                all:
+                    - $zoom: { min: 8 }
+                    - class: motorway
+                    - not: { structure: [ bridge,tunnel ] }
+            draw:
+                lines:
+                    order: 51
+                    color: '#fc8'
+                    width: [[7,0px],[7,0.5px],[8,0.84px],[9,1.24px],[10,1.72px],[11,2.31px],[12,3px],[13,3.84px],[14,4.85px],[15,6.05px],[16,7.5px],[17,9.23px],[18,11.32px],[19,13.82px],[20,18px]]
+                    join: round
+                    cap: round
+        road_major_rail_hatching:
+            filter:
+                all:
+                    - class: major_rail
+                    - not: { structure: [ bridge,tunnel ] }
+            draw:
+                rail-dash:
+                    order: 40
+                    color: '#bbb'
+                    width: [[15,0px],[15,3px],[16,1.09px],[17,1.93px],[18,3.09px],[19,4.73px],[20,8px]]
+        bridge_motorway_link:
+            filter:
+                all:
+                    - $zoom: { min: 8 }
+                    - structure: bridge
+                    - class: motorway_link
+            draw:
+                lines:
+                    order: 75
+                    color: '#fc8'
+                    width: [[13,0px],[13,1.5px],[14,2.5px],[15,1.91px],[16,2.84px],[17,3.95px],[18,5.28px],[19,6.87px],[20,11.5px]]
+                    join: round
+        bridge_service_track:
+            filter:
+                all:
+                    - structure: bridge
+                    - class: [ service,track ]
+            draw:
+                lines:
+                    order: 77
+                    color: '#fff'
+                    width: [[16,0px],[16,2px],[17,1.22px],[18,2.09px],[19,3.13px],[20,7.5px]]
+                    join: round
+        bridge_link:
+            filter:
+                all:
+                    - structure: bridge
+                    - class: link
+            draw:
+                lines:
+                    order: 60
+                    color: '#fea'
+                    width: [[13,0px],[13,1.5px],[14,2.5px],[15,1.91px],[16,2.84px],[17,3.95px],[18,5.28px],[19,6.87px],[20,11.5px]]
+                    join: round
+        bridge_street:
+            filter:
+                all:
+                    - structure: bridge
+                    - class: [ street,street_limited ]
+            draw:
+                lines:
+                    order: 60
+                    color: '#fff'
+                    width: [[14,0px],[14,2.5px],[15,1.27px],[16,2.19px],[17,3.3px],[18,4.63px],[19,6.23px],[20,11.5px]]
+                    join: round
+        bridge_secondary_tertiary:
+            filter:
+                all:
+                    - $zoom: { min: 9 }
+                    - structure: bridge
+                    - type: [ secondary,tertiary ]
+            draw:
+                lines:
+                    order: 79
+                    color: '#fea'
+                    width: [[7,0px],[7,0.5px],[8,0.69px],[9,0.91px],[10,1.18px],[11,1.5px],[12,1.89px],[13,2.36px],[14,2.91px],[15,3.58px],[16,4.39px],[17,5.35px],[18,6.51px],[19,7.9px],[20,10px]]
+                    join: round
+        bridge_trunk_primary:
+            filter:
+                all:
+                    - $zoom: { min: 8 }
+                    - structure: bridge
+                    - type: [ trunk,primary ]
+            draw:
+                lines:
+                    order: 82
+                    color: '#fea'
+                    width: [[7,0px],[7,0.5px],[8,0.84px],[9,1.24px],[10,1.72px],[11,2.31px],[12,3px],[13,3.84px],[14,4.85px],[15,6.05px],[16,7.5px],[17,9.23px],[18,11.32px],[19,13.82px],[20,18px]]
+                    join: round
+        bridge_motorway:
+            filter:
+                all:
+                    - $zoom: { min: 8 }
+                    - structure: bridge
+                    - class: motorway
+            draw:
+                lines:
+                    order: 81
+                    color: '#fc8'
+                    width: [[7,0px],[7,0.5px],[8,0.84px],[9,1.24px],[10,1.72px],[11,2.31px],[12,3px],[13,3.84px],[14,4.85px],[15,6.05px],[16,7.5px],[17,9.23px],[18,11.32px],[19,13.82px],[20,18px]]
+                    join: round
+        bridge_major_rail_hatching:
+            filter:
+                all:
+                    - structure: bridge
+                    - class: major_rail
+            draw:
+                rail-dash:
+                    order: 60
+                    color: '#bbb'
+                    width: [[15,0px],[15,3px],[16,1.09px],[17,1.93px],[18,3.09px],[19,4.73px],[20,8px]]
+    admin:
+        data: { source: mapbox }
+        admin_level_3:
+            filter:
+                all:
+                    - maritime: 0
+                    - not: { admin_level: [ 0,1,2 ] }
+            draw:
+                lines-dash:
+                    order: 25
+                    color: '#9e9cab'
+                    width: [[4,0.4px],[5,1px],[12,3px]]
+                    join: round
+        admin_level_2:
+            filter:
+                all:
+                    - admin_level: 2
+                    - disputed: 0
+                    - maritime: 0
+            draw:
+                lines:
+                    order: 25
+                    color: '#9e9cab'
+                    width: [[4,1.4px],[5,2px],[12,8px]]
+                    join: round
+                    cap: round
+        admin_level_2_disputed:
+            filter:
+                all:
+                    - admin_level: 2
+                    - disputed: 1
+                    - maritime: 0
+            draw:
+                lines-dash:
+                    order: 25
+                    color: '#9e9cab'
+                    width: [[4,1.4px],[5,2px],[12,8px]]
+                    cap: round
+        admin_level_3_maritime:
+            filter:
+                all:
+                    - maritime: 1
+                    - not: { admin_level: [ 0,1,2 ] }
+            draw:
+                lines-dash:
+                    order: 25
+                    color: '#a0c8f0'
+                    width: [[4,0.4px],[5,1px],[12,3px]]
+                    join: round
+        admin_level_2_maritime:
+            filter:
+                all:
+                    - admin_level: 2
+                    - maritime: 1
+            draw:
+                lines:
+                    order: 25
+                    color: '#a0c8f0'
+                    width: [[4,1.4px],[5,2px],[12,8px]]
+                    cap: round
+    water_label:
+        data: { source: mapbox }
+        water_label:
+            filter:
+                $geometry: point
+            draw:
+                text:
+                    priority: 10
+                    text_source: global.name_source
+                    font:
+                        size: '12'
+                        fill: '#74aee9'
+                        stroke:
+                            color: '#FFFFFF'
+                            width: 2
+    poi_label:
+        data: { source: mapbox }
+        poi_label_4:
+            filter:
+                all:
+                    - $zoom: { min: 16 }
+                    - $geometry: point
+                    - scalerank: 4
+            draw:
+                icons:
+                    order: 10
+                    sprite: function() { return "" + feature.maki + "-11"; }
+                    collide: false
+                    anchor: top
+                text:
+                    collide: true
+                    anchor: bottom
+                    priority: 10
+                    text_source: global.name_source
+                    font:
+                        size: '12'
+                        fill: '#666'
+                        stroke:
+                            color: '#ffffff'
+                            width: 1
+        poi_label_3:
+            filter:
+                all:
+                    - $zoom: { min: 15 }
+                    - $geometry: point
+                    - scalerank: 3
+            draw:
+                icons:
+                    order: 10
+                    sprite: function() { return "" + feature.maki + "-11"; }
+                    collide: false
+                    anchor: top
+                text:
+                    collide: true
+                    anchor: bottom
+                    priority: 10
+                    text_source: global.name_source
+                    font:
+                        size: '12'
+                        fill: '#666'
+                        stroke:
+                            color: '#ffffff'
+                            width: 1
+        poi_label_2:
+            filter:
+                all:
+                    - $zoom: { min: 14 }
+                    - $geometry: point
+                    - scalerank: 2
+            draw:
+                icons:
+                    order: 10
+                    sprite: function() { return "" + feature.maki + "-11"; }
+                    collide: false
+                    anchor: top
+                text:
+                    collide: true
+                    anchor: bottom
+                    priority: 10
+                    text_source: global.name_source
+                    font:
+                        size: '12'
+                        fill: '#666'
+                        stroke:
+                            color: '#ffffff'
+                            width: 1
+        poi_label_1:
+            filter:
+                all:
+                    - $zoom: { min: 13 }
+                    - $geometry: point
+                    - scalerank: 1
+            draw:
+                icons:
+                    order: 10
+                    sprite: function() { return "" + feature.maki + "-11"; }
+                    collide: false
+                    anchor: top
+                text:
+                    collide: true
+                    anchor: bottom
+                    priority: 10
+                    text_source: global.name_source
+                    font:
+                        size: '12'
+                        fill: '#666'
+                        stroke:
+                            color: '#ffffff'
+                            width: 1
+    rail_station_label:
+        data: { source: mapbox }
+        rail_station_label:
+            draw:
+                icons:
+                    order: 10
+                    sprite: function() { return "" + feature.maki + "-11"; }
+                    collide: false
+                    anchor: top
+                text:
+                    collide: true
+                    anchor: bottom
+                    priority: 10
+                    text_source: global.name_source
+                    font:
+                        size: '12'
+                        fill: '#666'
+                        stroke:
+                            color: '#ffffff'
+                            width: 1
+    airport_label:
+        data: { source: mapbox }
+        airport_label:
+            filter:
+                all:
+                    - $zoom: { min: 11 }
+                    - $geometry: point
+                    - scalerank: [ 1,2,3 ]
+            draw:
+                icons:
+                    order: 10
+                    sprite: function() { return "" + feature.maki + "-11"; }
+                    collide: false
+                    anchor: top
+                text:
+                    collide: true
+                    anchor: bottom
+                    priority: 1
+                    text_source: global.name_source
+                    font:
+                        size: '12'
+                        fill: '#666'
+                        stroke:
+                            color: '#ffffff'
+                            width: 1
+    road_label:
+        data: { source: mapbox }
+        road_label:
+            filter:
+                not: { class: ferry }
+            draw:
+                text:
+                    priority: 1
+                    text_source: global.name_source
+                    font:
+                        size: [[13,12px],[14,13px]]
+                        fill: '#765'
+                        stroke:
+                            width: 1
+        road_label_highway_shield:
+            filter:
+                all:
+                    - reflen: [ 0,1,2,3,4,5,6 ]
+                    - $zoom: { min: 8 }
+            draw:
+                icons:
+                    order: 40
+                    sprite: function() { return "motorway_" + feature.reflen + ""; }
+                    collide: false
+                    anchor: top
+                text:
+                    collide: true
+                    anchor: bottom
+                    priority: 1
+                    text_source: function() { return "" + feature.ref + ""; }
+                    font:
+                        size: '11'
+    place_label:
+        data: { source: mapbox }
+        place_label_other:
+            filter:
+                all:
+                    - type: [ hamlet,suburb,neighbourhood,island,islet ]
+                    - $zoom: { min: 7 }
+            draw:
+                text:
+                    priority: 10
+                    text_source: global.name_source
+                    font:
+                        size: [[12,10px],[13,10.96px],[14,11.52px],[15,14px]]
+                        fill: '#633'
+                        stroke:
+                            color: '#FFFFFF'
+                            width: 1
+                        transform: uppercase
+        place_label_village:
+            filter:
+                all:
+                    - type: village
+                    - $zoom: { min: 7 }
+            draw:
+                text:
+                    priority: 10
+                    text_source: global.name_source
+                    font:
+                        size: [[10,12px],[11,13.3px],[12,14.27px],[13,15.43px],[14,16.81px],[15,22px]]
+                        fill: '#333'
+                        stroke:
+                            color: '#FFFFFF'
+                            width: 1
+        place_label_town:
+            filter:
+                all:
+                    - type: town
+                    - $zoom: { min: 8 }
+            draw:
+                text:
+                    priority: 10
+                    text_source: global.name_source
+                    font:
+                        size: [[10,14px],[11,15.3px],[12,16.27px],[13,17.43px],[14,18.81px],[15,24px]]
+                        fill: '#333'
+                        stroke:
+                            color: '#FFFFFF'
+                            width: 1
+        place_label_city:
+            filter:
+                all:
+                    - type: city
+                    - $zoom: { min: 7 }
+            draw:
+                text:
+                    priority: 10
+                    text_source: global.name_source
+                    font:
+                        size: [[7,14px],[8,15.46px],[9,16.62px],[10,18.01px],[11,24px]]
+                        fill: '#333'
+                        stroke:
+                            color: '#FFFFFF'
+                            width: 1
+    marine_label:
+        data: { source: mapbox }
+        marine_label_line_4:
+            filter:
+                all:
+                    - $geometry: line
+                    - not: { labelrank: [ 0,1,2,3 ] }
+            draw:
+                text:
+                    priority: 10
+                    text_source: global.name_source
+                    font:
+                        size: [[3,11],[4,12]]
+                        fill: '#74aee9'
+                        stroke:
+                            color: '#FFFFFF'
+                            width: 1
+        marine_label_4:
+            filter:
+                all:
+                    - $geometry: point
+                    - not: { labelrank: [ 0,1,2,3 ] }
+            draw:
+                text:
+                    priority: 10
+                    text_source: global.name_source
+                    font:
+                        size: [[3,11],[4,12]]
+                        fill: '#74aee9'
+                        stroke:
+                            color: '#FFFFFF'
+                            width: 1
+        marine_label_line_3:
+            filter:
+                all:
+                    - $geometry: line
+                    - labelrank: 3
+            draw:
+                text:
+                    priority: 10
+                    text_source: global.name_source
+                    font:
+                        size: [[3,11],[4,14]]
+                        fill: '#74aee9'
+                        stroke:
+                            color: '#FFFFFF'
+                            width: 1
+        marine_label_point_3:
+            filter:
+                all:
+                    - $geometry: point
+                    - labelrank: 3
+            draw:
+                text:
+                    priority: 10
+                    text_source: global.name_source
+                    font:
+                        size: [[3,11],[4,14]]
+                        fill: '#74aee9'
+                        stroke:
+                            color: '#FFFFFF'
+                            width: 1
+        marine_label_line_2:
+            filter:
+                all:
+                    - $geometry: line
+                    - labelrank: 2
+            draw:
+                text:
+                    priority: 10
+                    text_source: global.name_source
+                    font:
+                        size: [[3,14],[4,16]]
+                        fill: '#74aee9'
+                        stroke:
+                            color: '#FFFFFF'
+                            width: 1
+        marine_label_point_2:
+            filter:
+                all:
+                    - $geometry: point
+                    - labelrank: 2
+            draw:
+                text:
+                    priority: 10
+                    text_source: global.name_source
+                    font:
+                        size: [[3,14],[4,16]]
+                        fill: '#74aee9'
+                        stroke:
+                            color: '#FFFFFF'
+                            width: 1
+        marine_label_line_1:
+            filter:
+                all:
+                    - $geometry: line
+                    - labelrank: 1
+            draw:
+                text:
+                    priority: 10
+                    text_source: global.name_source
+                    font:
+                        size: [[3,18],[4,22]]
+                        fill: '#74aee9'
+                        stroke:
+                            color: '#FFFFFF'
+                            width: 1
+        marine_label_point_1:
+            filter:
+                all:
+                    - $geometry: point
+                    - labelrank: 1
+            draw:
+                text:
+                    priority: 10
+                    text_source: global.name_source
+                    font:
+                        size: [[3,18],[4,22]]
+                        fill: '#74aee9'
+                        stroke:
+                            color: '#FFFFFF'
+                            width: 1
+    country_label:
+        data: { source: mapbox }
+        country_label_4:
+            filter:
+                not: { scalerank: [ 0,1,2,3 ] }
+            draw:
+                text:
+                    priority: 10
+                    text_source: global.name_source
+                    font:
+                        size: [[4,11],[6,15]]
+                        fill: '#334'
+                        stroke:
+                            color: '#FFFFFF'
+                            width: 2
+                        transform: uppercase
+        country_label_3:
+            filter:
+                scalerank: 3
+            draw:
+                text:
+                    priority: 10
+                    text_source: global.name_source
+                    font:
+                        size: [[3,11],[7,17]]
+                        fill: '#334'
+                        stroke:
+                            color: '#FFFFFF'
+                            width: 2
+                        transform: uppercase
+        country_label_2:
+            filter:
+                scalerank: 2
+            draw:
+                text:
+                    priority: 10
+                    text_source: global.name_source
+                    font:
+                        size: [[2,11],[5,17]]
+                        fill: '#334'
+                        stroke:
+                            color: '#FFFFFF'
+                            width: 2
+                        transform: uppercase
+        country_label_1:
+            filter:
+                scalerank: 1
+            draw:
+                text:
+                    priority: 10
+                    text_source: global.name_source
+                    font:
+                        size: [[1,11],[4,17]]
+                        fill: '#334'
+                        stroke:
+                            color: '#FFFFFF'
+                            width: 2
+                        transform: uppercase

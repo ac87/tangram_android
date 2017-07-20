@@ -1,0 +1,469 @@
+# Mapbox 'Basic' Version:8 (Converted: 20/07/2017 09:29)
+labels-global:
+        - &text_visible         true
+        - &debug_visible        true
+global:
+    default_text_source: |
+        function() {
+            if (feature.ref && feature.name_en ) { return feature.ref +" " + feature.name_en; } else if (feature.name_en) { return feature.name_en; } else { return feature.ref; }
+        }
+    name_source: |
+        function() {
+            { return feature.name_en; }
+        }
+    ref_source: |
+        function() {
+            if (feature.ref) { return feature.ref; } else if (feature.name) { return feature.name; } else { return "No Ref"; }
+        }
+styles:
+    rail-dash:
+        base: lines
+        texcoords: true
+        shaders:
+            defines:
+                DASH_SIZE: .9
+                DASH_SCALE: .6
+            blocks:
+                filter: |
+                    if (step(DASH_SIZE, fract(v_texcoord.y * DASH_SCALE)) == 0.)
+                    {
+                    discard;
+                    }
+                lines-dash:
+                    base: lines
+                    dash: [2,2]
+    icons:
+        base: points
+        texture: pois
+        interactive: true
+cameras:
+    perspective:
+        type: perspective
+        vanishing_point: [0, -500]
+textures:
+    pois:
+        url: images/basic-v9.png
+        filtering: mipmap
+        sprites:
+            information-15: [1,1,19,19]
+            airfield-15: [22,1,19,19]
+            amusement-park-15: [1,22,19,19]
+            aquarium-15: [22,22,19,19]
+            art-gallery-15: [43,1,19,19]
+            attraction-15: [43,22,19,19]
+            bakery-15: [1,43,19,19]
+            bank-15: [22,43,19,19]
+            bar-15: [43,43,19,19]
+            beer-15: [64,1,19,19]
+            bicycle-15: [64,22,19,19]
+            bicycle-share-15: [64,43,19,19]
+            bus-15: [1,64,19,19]
+            cafe-15: [22,64,19,19]
+            campsite-15: [43,64,19,19]
+            car-15: [64,64,19,19]
+            castle-15: [85,1,19,19]
+            cemetery-15: [85,22,19,19]
+            cinema-15: [85,43,19,19]
+            circle-15: [85,64,19,19]
+            circle-stroked-15: [1,85,19,19]
+            clothing-store-15: [22,85,19,19]
+            college-15: [43,85,19,19]
+            dentist-15: [64,85,19,19]
+            doctor-15: [85,85,19,19]
+            dog-park-15: [106,1,19,19]
+            drinking-water-15: [106,22,19,19]
+            embassy-15: [106,43,19,19]
+            entrance-15: [106,64,19,19]
+            fast-food-15: [106,85,19,19]
+            ferry-15: [1,106,19,19]
+            fire-station-15: [22,106,19,19]
+            fuel-15: [43,106,19,19]
+            garden-15: [64,106,19,19]
+            golf-15: [85,106,19,19]
+            grocery-15: [106,106,19,19]
+            harbor-15: [127,1,19,19]
+            heliport-15: [127,22,19,19]
+            hospital-15: [127,43,19,19]
+            ice-cream-15: [127,64,19,19]
+            alcohol-shop-15: [127,85,19,19]
+            laundry-15: [127,106,19,19]
+            library-15: [1,127,19,19]
+            lodging-15: [22,127,19,19]
+            marker-15: [43,127,19,19]
+            monument-15: [64,127,19,19]
+            mountain-15: [85,127,19,19]
+            museum-15: [106,127,19,19]
+            music-15: [127,127,19,19]
+            park-15: [148,1,19,19]
+            pharmacy-15: [148,22,19,19]
+            picnic-site-15: [148,43,19,19]
+            place-of-worship-15: [148,64,19,19]
+            playground-15: [148,85,19,19]
+            police-15: [148,106,19,19]
+            post-15: [148,127,19,19]
+            prison-15: [1,148,19,19]
+            rail-15: [22,148,19,19]
+            rail-light-15: [43,148,19,19]
+            rail-metro-15: [64,148,19,19]
+            religious-christian-15: [85,148,19,19]
+            religious-jewish-15: [106,148,19,19]
+            religious-muslim-15: [127,148,19,19]
+            restaurant-15: [148,148,19,19]
+            rocket-15: [169,1,19,19]
+            school-15: [169,22,19,19]
+            shop-15: [169,43,19,19]
+            stadium-15: [169,64,19,19]
+            star-15: [169,85,19,19]
+            suitcase-15: [169,106,19,19]
+            swimming-15: [169,127,19,19]
+            theatre-15: [169,148,19,19]
+            toilet-15: [1,169,19,19]
+            town-hall-15: [22,169,19,19]
+            triangle-15: [43,169,19,19]
+            triangle-stroked-15: [64,169,19,19]
+            veterinary-15: [85,169,19,19]
+            volcano-15: [106,169,19,19]
+            zoo-15: [127,169,19,19]
+            airport-15: [148,169,19,19]
+            zoo-11: [169,169,15,15]
+            airport-11: [190,1,15,15]
+            alcohol-shop-11: [190,18,15,15]
+            amusement-park-11: [190,35,15,15]
+            aquarium-11: [190,52,15,15]
+            art-gallery-11: [190,69,15,15]
+            attraction-11: [190,86,15,15]
+            bakery-11: [190,103,15,15]
+            bank-11: [190,120,15,15]
+            bar-11: [190,137,15,15]
+            beer-11: [190,154,15,15]
+            bicycle-11: [190,171,15,15]
+            bicycle-share-11: [1,190,15,15]
+            bus-11: [18,190,15,15]
+            cafe-11: [35,190,15,15]
+            campsite-11: [52,190,15,15]
+            car-11: [69,190,15,15]
+            castle-11: [86,190,15,15]
+            cemetery-11: [103,190,15,15]
+            cinema-11: [120,190,15,15]
+            circle-11: [137,190,15,15]
+            circle-stroked-11: [154,190,15,15]
+            clothing-store-11: [171,190,15,15]
+            college-11: [188,190,15,15]
+            dentist-11: [207,1,15,15]
+            doctor-11: [207,18,15,15]
+            dog-park-11: [207,35,15,15]
+            drinking-water-11: [207,52,15,15]
+            embassy-11: [207,69,15,15]
+            entrance-11: [207,86,15,15]
+            fast-food-11: [207,103,15,15]
+            ferry-11: [207,120,15,15]
+            fire-station-11: [207,137,15,15]
+            fuel-11: [207,154,15,15]
+            garden-11: [207,171,15,15]
+            golf-11: [207,188,15,15]
+            grocery-11: [1,207,15,15]
+            harbor-11: [18,207,15,15]
+            heliport-11: [35,207,15,15]
+            hospital-11: [52,207,15,15]
+            ice-cream-11: [69,207,15,15]
+            information-11: [86,207,15,15]
+            laundry-11: [103,207,15,15]
+            library-11: [120,207,15,15]
+            lodging-11: [137,207,15,15]
+            marker-11: [154,207,15,15]
+            monument-11: [171,207,15,15]
+            mountain-11: [188,207,15,15]
+            museum-11: [205,207,15,15]
+            music-11: [224,1,15,15]
+            park-11: [224,18,15,15]
+            pharmacy-11: [224,35,15,15]
+            picnic-site-11: [224,52,15,15]
+            place-of-worship-11: [224,69,15,15]
+            playground-11: [224,86,15,15]
+            police-11: [224,103,15,15]
+            post-11: [224,120,15,15]
+            prison-11: [224,137,15,15]
+            rail-11: [224,154,15,15]
+            rail-light-11: [224,171,15,15]
+            rail-metro-11: [224,188,15,15]
+            religious-christian-11: [224,205,15,15]
+            religious-jewish-11: [1,224,15,15]
+            religious-muslim-11: [18,224,15,15]
+            restaurant-11: [35,224,15,15]
+            rocket-11: [52,224,15,15]
+            school-11: [69,224,15,15]
+            shop-11: [86,224,15,15]
+            stadium-11: [103,224,15,15]
+            star-11: [120,224,15,15]
+            suitcase-11: [137,224,15,15]
+            swimming-11: [154,224,15,15]
+            theatre-11: [171,224,15,15]
+            toilet-11: [188,224,15,15]
+            town-hall-11: [205,224,15,15]
+            triangle-11: [222,224,15,15]
+            triangle-stroked-11: [241,1,15,15]
+            veterinary-11: [241,18,15,15]
+            volcano-11: [241,35,15,15]
+            airfield-11: [241,52,15,15]
+scene:
+    background:
+        color: '#dedede'
+sources:
+    mapbox:
+        url: 'https://a.tiles.mapbox.com/v4/mapbox.mapbox-streets-v7/{z}/{x}/{y}.vector.pbf?access_token=pk.eyJ1IjoiYmNhbXBlciIsImEiOiJWUmh3anY0In0.1fgSTNWpQV8-5sBjGbBzGg'
+        type: 'MVT'
+layers:
+    landuse_overlay:
+        data: { source: mapbox }
+        landuse_overlay_national_park:
+            filter:
+                class: national_park
+            draw:
+                polygons:
+                    order: 2
+                    color: '#d2edae'
+    landuse:
+        data: { source: mapbox }
+        landuse_park:
+            filter:
+                class: park
+            draw:
+                polygons:
+                    order: 2
+                    color: '#d2edae'
+    waterway:
+        data: { source: mapbox }
+        waterway:
+            filter:
+                all:
+                    - $geometry: line
+                    - class: [ river,canal ]
+            draw:
+                lines:
+                    order: 4
+                    color: '#a0cfdf'
+                    width: [[8,0.5px],[9,1.1px],[10,1.25px],[11,1.45px],[12,1.73px],[13,2.12px],[14,2.67px],[15,3.44px],[16,4.52px],[17,6.03px],[18,8.14px],[19,11.1px],[20,15px]]
+    water:
+        data: { source: mapbox }
+        water:
+            draw:
+                polygons:
+                    order: 5
+                    color: '#a0cfdf'
+    building:
+        data: { source: mapbox }
+        building:
+            draw:
+                polygons:
+                    order: 30
+                    color: '#d6d6d6'
+    road:
+        data: { source: mapbox }
+        tunnel_minor:
+            filter:
+                all:
+                    - $geometry: line
+                    - class: [ motorway_link,street,street_limited,service,track,pedestrian,path,link ]
+                    - structure: tunnel
+            draw:
+                lines-dash:
+                    order: 40
+                    color: '#efefef'
+                    width: [[4,0.25px],[5,0.76px],[6,0.79px],[7,0.82px],[8,0.88px],[9,0.96px],[10,1.09px],[11,1.3px],[12,1.62px],[13,2.11px],[14,2.87px],[15,4.05px],[16,5.88px],[17,8.71px],[18,13.11px],[19,19.92px],[20,30px]]
+                    join: miter
+                    cap: butt
+        tunnel_major:
+            filter:
+                all:
+                    - $geometry: line
+                    - class: [ motorway,primary,secondary,tertiary,trunk ]
+                    - structure: tunnel
+            draw:
+                lines-dash:
+                    order: 40
+                    color: '#fff'
+                    width: [[6,0.5px],[7,1.11px],[8,1.25px],[9,1.46px],[10,1.75px],[11,2.16px],[12,2.73px],[13,3.53px],[14,4.65px],[15,6.22px],[16,8.41px],[17,11.49px],[18,15.79px],[19,21.81px],[20,30px]]
+                    join: miter
+                    cap: butt
+        road_minor:
+            filter:
+                all:
+                    - $geometry: line
+                    - class: [ motorway_link,street,street_limited,service,track,pedestrian,path,link ]
+            draw:
+                lines:
+                    order: 40
+                    color: '#efefef'
+                    width: [[4,0.25px],[5,0.76px],[6,0.79px],[7,0.82px],[8,0.88px],[9,0.96px],[10,1.09px],[11,1.3px],[12,1.62px],[13,2.11px],[14,2.87px],[15,4.05px],[16,5.88px],[17,8.71px],[18,13.11px],[19,19.92px],[20,30px]]
+                    join: round
+                    cap: round
+        road_major:
+            filter:
+                all:
+                    - $geometry: line
+                    - class: [ motorway,primary,secondary,tertiary,trunk ]
+            draw:
+                lines:
+                    order: 40
+                    color: '#fff'
+                    width: [[6,0.5px],[7,1.11px],[8,1.25px],[9,1.46px],[10,1.75px],[11,2.16px],[12,2.73px],[13,3.53px],[14,4.65px],[15,6.22px],[16,8.41px],[17,11.49px],[18,15.79px],[19,21.81px],[20,30px]]
+                    join: round
+                    cap: round
+        bridge_minor_case:
+            filter:
+                all:
+                    - $geometry: line
+                    - class: [ motorway_link,street,street_limited,service,track,pedestrian,path,link ]
+                    - structure: bridge
+            draw:
+                lines:
+                    order: 60
+                    color: '#dedede'
+                    width: [[12,0.5px],[13,1.13px],[14,1.35px],[15,1.68px],[16,2.23px],[17,3.1px],[18,4.49px],[19,6.72px],[20,10px]]
+                    join: miter
+        bridge_major_case:
+            filter:
+                all:
+                    - $geometry: line
+                    - class: [ motorway,primary,secondary,tertiary,trunk ]
+                    - structure: bridge
+            draw:
+                lines:
+                    order: 60
+                    color: '#dedede'
+                    width: [[12,0.5px],[13,1.13px],[14,1.35px],[15,1.68px],[16,2.23px],[17,3.1px],[18,4.49px],[19,6.72px],[20,10px]]
+                    join: miter
+        bridge_minor:
+            filter:
+                all:
+                    - $geometry: line
+                    - class: [ motorway_link,street,street_limited,service,track,pedestrian,path,link ]
+                    - structure: bridge
+            draw:
+                lines:
+                    order: 60
+                    color: '#efefef'
+                    width: [[4,0.25px],[5,0.76px],[6,0.79px],[7,0.82px],[8,0.88px],[9,0.96px],[10,1.09px],[11,1.3px],[12,1.62px],[13,2.11px],[14,2.87px],[15,4.05px],[16,5.88px],[17,8.71px],[18,13.11px],[19,19.92px],[20,30px]]
+                    join: round
+        bridge_major:
+            filter:
+                all:
+                    - $geometry: line
+                    - class: [ motorway,primary,secondary,tertiary,trunk ]
+                    - structure: bridge
+            draw:
+                lines:
+                    order: 60
+                    color: '#fff'
+                    width: [[6,0.5px],[7,1.11px],[8,1.25px],[9,1.46px],[10,1.75px],[11,2.16px],[12,2.73px],[13,3.53px],[14,4.65px],[15,6.22px],[16,8.41px],[17,11.49px],[18,15.79px],[19,21.81px],[20,30px]]
+                    join: round
+    admin:
+        data: { source: mapbox }
+        admin_country:
+            filter:
+                all:
+                    - $geometry: line
+                    - admin_level: [ 0,1,2 ]
+                    - maritime: 0
+            draw:
+                lines:
+                    order: 25
+                    color: '#8b8a8a'
+                    width: [[3,0.5px],[4,1.03px],[5,1.07px],[6,1.12px],[7,1.18px],[8,1.27px],[9,1.38px],[10,1.52px],[11,1.71px],[12,1.95px],[13,2.27px],[14,2.68px],[15,3.21px],[16,3.9px],[17,4.81px],[18,5.98px],[19,7.5px],[20,9.48px],[21,12.05px],[22,15px]]
+                    join: round
+                    cap: round
+    poi_label:
+        data: { source: mapbox }
+        poi_label:
+            filter:
+                all:
+                    - $zoom: { min: 5 }
+                    - $geometry: point
+                    - scalerank: 1
+                    - localrank: 1
+            draw:
+                icons:
+                    order: 10
+                    sprite: function() { return "" + feature.maki + "-11"; }
+                    collide: false
+                    anchor: top
+                text:
+                    collide: true
+                    anchor: bottom
+                    priority: 10
+                    text_source: global.name_source
+                    font:
+                        size: '11'
+                        fill: '#666'
+                        stroke:
+                            color: '#FFFFFF'
+                            width: 1
+    road_label:
+        data: { source: mapbox }
+        road_major_label:
+            filter:
+                all:
+                    - $geometry: line
+                    - class: [ motorway,primary,secondary,tertiary,trunk ]
+            draw:
+                text:
+                    priority: 1
+                    text_source: global.name_source
+                    font:
+                        size: [[10,8px],[11,8.58px],[12,8.7px],[13,8.86px],[14,9.09px],[15,9.41px],[16,9.85px],[17,10.48px],[18,11.35px],[19,12.58px],[20,14px]]
+                        fill: '#666'
+                        stroke:
+                            color: '#FFFFFF'
+                            width: 2
+                        transform: uppercase
+    place_label:
+        data: { source: mapbox }
+        place_label_other:
+            filter:
+                all:
+                    - $zoom: { min: 11 }
+                    - $geometry: point
+                    - type: [ town,village,hamlet,suburb,neighbourhood,island ]
+            draw:
+                text:
+                    priority: 10
+                    text_source: global.name_source
+                    font:
+                        size: [[6,12],[12,16]]
+                        fill: '#666'
+                        stroke:
+                            color: '#FFFFFF'
+                            width: 1
+        place_label_city:
+            filter:
+                all:
+                    - $zoom: { min: 7, max: 16 }
+                    - $geometry: point
+                    - type: city
+            draw:
+                text:
+                    priority: 10
+                    text_source: global.name_source
+                    font:
+                        size: [[3,12],[8,16]]
+                        fill: '#666'
+                        stroke:
+                            color: '#FFFFFF'
+                            width: 1
+    country_label:
+        data: { source: mapbox }
+        country_label:
+            filter:
+                all:
+                    - $geometry: point
+                    - $zoom: { max: 12 }
+            draw:
+                text:
+                    priority: 10
+                    text_source: global.name_source
+                    font:
+                        size: [[3,14],[8,22]]
+                        fill: '#666'
+                        stroke:
+                            color: '#FFFFFF'
+                            width: 1

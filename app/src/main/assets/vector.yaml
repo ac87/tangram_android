@@ -5,5 +5,9 @@ import:
 #    - vector/global.yaml
 #    - vector/source.yaml
 
-    - https://raw.githubusercontent.com/tangrams/bubble-wrap/gh-pages/bubble-wrap-style.yaml
+#    - https://raw.githubusercontent.com/tangrams/bubble-wrap/gh-pages/bubble-wrap-style.yaml
+
+# mapbox converted styles
+    #- vector/mapbox/basic-v9/basic-v9.yaml
+    - vector/mapbox/bright-v9/bright-v9.yaml
 
