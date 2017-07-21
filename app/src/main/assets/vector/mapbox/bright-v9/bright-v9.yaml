@@ -1,4 +1,4 @@
-# Mapbox 'Bright' Version:8 (Converted: 20/07/2017 09:30)
+# Mapbox 'Bright' Version:8 (Converted: 21/07/2017 12:58)
 labels-global:
         - &text_visible         true
         - &debug_visible        true
@@ -669,7 +669,7 @@ layers:
                     - class: [ major_rail,minor_rail ]
             draw:
                 lines:
-                    order: 40
+                    order: 45
                     color: '#bbb'
                     width: [[14,0.4px],[15,0.75px],[16,1.1px],[17,1.27px],[18,1.5px],[19,1.83px],[20,2px]]
         road_path_pedestrian:
@@ -690,7 +690,7 @@ layers:
                     - not: { structure: [ bridge,tunnel ] }
             draw:
                 lines:
-                    order: 40
+                    order: 45
                     color: '#bbb'
                     width: [[14,0.4px],[15,0.75px],[16,1.1px],[17,1.27px],[18,1.5px],[19,1.83px],[20,2px]]
         bridge_path_pedestrian:
@@ -802,7 +802,7 @@ layers:
                     - class: [ major_rail,minor_rail ]
             draw:
                 rail-dash:
-                    order: 40
+                    order: 45
                     color: '#bbb'
                     width: [[15,0px],[15,3px],[16,1.09px],[17,1.93px],[18,3.09px],[19,4.73px],[20,8px]]
         road_motorway_link:
@@ -901,7 +901,7 @@ layers:
                     - not: { structure: [ bridge,tunnel ] }
             draw:
                 rail-dash:
-                    order: 40
+                    order: 45
                     color: '#bbb'
                     width: [[15,0px],[15,3px],[16,1.09px],[17,1.93px],[18,3.09px],[19,4.73px],[20,8px]]
         bridge_motorway_link:
@@ -1291,9 +1291,7 @@ layers:
                             width: 1
         place_label_city:
             filter:
-                all:
-                    - type: city
-                    - $zoom: { min: 7 }
+                type: city
             draw:
                 text:
                     priority: 10
