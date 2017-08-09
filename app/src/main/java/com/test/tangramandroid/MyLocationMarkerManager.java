@@ -40,7 +40,6 @@ public class MyLocationMarkerManager implements LocationListener {
         this.mapController = mapController;
 
         locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-        createMarker();
 
         if (myLocationButton != null)
             myLocationButton.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +50,10 @@ public class MyLocationMarkerManager implements LocationListener {
             });
 
         requestLocationUpdates();
+    }
+
+    public void onSceneReady() {
+        createMarker();
     }
 
     public void onResume() {

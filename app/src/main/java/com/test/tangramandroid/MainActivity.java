@@ -1,11 +1,9 @@
 package com.test.tangramandroid;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.graphics.PointF;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -19,14 +17,14 @@ import com.mapzen.tangram.LngLat;
 import com.mapzen.tangram.MapController;
 import com.mapzen.tangram.MapView;
 import com.mapzen.tangram.MarkerPickResult;
+import com.mapzen.tangram.SceneError;
 import com.mapzen.tangram.SceneUpdate;
-import com.mapzen.tangram.SceneUpdateError;
 import com.mapzen.tangram.TouchInput;
 
 import java.util.ArrayList;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements MapView.OnMapReadyCallback, MapController.FeaturePickListener, MapController.LabelPickListener, MapController.MarkerPickListener, MapController.SceneUpdateErrorListener, TouchInput.TapResponder {
+public class MainActivity extends AppCompatActivity implements MapController.SceneLoadListener, MapController.FeaturePickListener, MapController.LabelPickListener, MapController.MarkerPickListener, TouchInput.TapResponder {
 
     private static final int REQUEST_READWRITE_STORAGE = 123;
 
@@ -55,8 +53,7 @@ public class MainActivity extends AppCompatActivity implements MapView.OnMapRead
             @Override
             public void onClick(View view) {
                 isVector = !isVector;
-
-                mapController.queueEvent(reloadRunnable);
+                mapController.loadSceneFile(getBaseScene(isVector), getSceneUpdates());
                 setSourceToggleDrawable(buttonToggle);
             }
         });
@@ -71,7 +68,27 @@ public class MainActivity extends AppCompatActivity implements MapView.OnMapRead
         });
 
 
-        mapView.getMapAsync(this, getBaseScene(isVector), getSceneUpdates());
+        mapController = mapView.getMap(this);
+        mapController.setPosition(new LngLat(-0.1427848, 51.4943555));
+        mapController.setZoom(4);
+
+        mapController.setViewCompleteListener(new MapController.ViewCompleteListener() {
+            public void onViewComplete() {
+                Log.d(TAG, "View complete");
+            }
+        });
+        mapController.setTapResponder(this);
+        mapController.setFeaturePickListener(this);
+        mapController.setLabelPickListener(this);
+        mapController.setMarkerPickListener(this);
+        mapController.setPickRadius(20);
+
+        if (MyLocationMarkerManager.deviceHasGpsCapability(this))
+            myLocation = new MyLocationMarkerManager(this, mapController, findViewById(R.id.buttonMyLocation));
+
+        route = new RouteManager(mapController);
+
+        mapController.loadSceneFile(getBaseScene(isVector), getSceneUpdates());
         setSourceToggleDrawable(buttonToggle);
     }
 
@@ -87,43 +104,8 @@ public class MainActivity extends AppCompatActivity implements MapView.OnMapRead
         buttonToggle.setImageResource(isVector ? R.drawable.ic_map_black_24dp : R.drawable.ic_satellite_black_24dp);
     }
 
-    private Runnable reloadRunnable = new Runnable() {
-        @Override
-        public void run() {
-            mapController.loadSceneFile(getBaseScene(isVector), getSceneUpdates());
-        }
-    };
-
     private String getBaseScene(boolean vector) {
         return (vector ? "vector" : "raster") + ".yaml";
-    }
-
-    @Override
-    public void onMapReady(MapController mapController) {
-
-        Log.d(TAG, "onMapReady");
-
-        this.mapController = mapController;
-
-        mapController.setPosition(new LngLat(-0.1427848, 51.4943555));
-        mapController.setZoom(4);
-
-        mapController.setViewCompleteListener(new MapController.ViewCompleteListener() {
-            public void onViewComplete() {
-                Log.d(TAG, "View complete");
-            }
-        });
-        mapController.setTapResponder(this);
-        mapController.setFeaturePickListener(this);
-        mapController.setLabelPickListener(this);
-        mapController.setMarkerPickListener(this);
-        mapController.setSceneUpdateErrorListener(this);
-        mapController.setPickRadius(20);
-
-        if (MyLocationMarkerManager.deviceHasGpsCapability(this))
-            myLocation = new MyLocationMarkerManager(this, mapController, findViewById(R.id.buttonMyLocation));
-
-        route = new RouteManager(mapController);
     }
 
     @Override
@@ -257,9 +239,11 @@ public class MainActivity extends AppCompatActivity implements MapView.OnMapRead
     }
 
     @Override
-    public void onSceneUpdateError(SceneUpdateError sceneUpdateError) {
-        Log.d(TAG, "Scene update errors "
-                + sceneUpdateError.getSceneUpdate().toString()
-                + " " + sceneUpdateError.getError().toString());
+    public void onSceneReady(int sceneId, SceneError sceneError) {
+        if (sceneError != null) {
+            Toast.makeText(this, "Scene load error: " + sceneId + " " + sceneError.getSceneUpdate().toString() + " " + sceneError.getError().toString(), Toast.LENGTH_SHORT).show();
+            Log.e(TAG, "Scene update errors " + sceneError.getSceneUpdate().toString() + " " + sceneError.getError().toString());
+        }
+        myLocation.onSceneReady();
     }
 }
