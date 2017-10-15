@@ -5,3 +5,24 @@ styles:
     blended-lines:
         base: lines
         blend: overlay
+layers:
+    map-datas:
+        data: { source: map-datas }
+        high:
+            filter:
+                $zoom: { min: 11 }
+            draw:
+                points:
+                    size: 32px
+                    color: red
+                    order: 10
+                    collide: false
+        low:
+            filter:
+                $zoom: { max: 11 }
+            draw:
+                points:
+                    size: 16px
+                    color: red
+                    order: 10
+                    collide: true

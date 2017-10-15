@@ -35,8 +35,9 @@ public class MainActivity extends AppCompatActivity implements MapController.Sce
 
     private MyLocationMarkerManager myLocation;
     private RouteManager route;
+    private MapDataManager mapData;
 
-    private boolean isVector = true;
+    private boolean isVector = false;
 
     private final String apiKey = "vector-tiles-tyHL4AY"; // change this.
 
@@ -67,9 +68,8 @@ public class MainActivity extends AppCompatActivity implements MapController.Sce
             }
         });
 
-
         mapController = mapView.getMap(this);
-        mapController.setPosition(new LngLat(-0.1427848, 51.4943555));
+        mapController.setPosition(new LngLat(-0.3, 40.0));
         mapController.setZoom(4);
 
         mapController.setViewCompleteListener(new MapController.ViewCompleteListener() {
@@ -83,10 +83,11 @@ public class MainActivity extends AppCompatActivity implements MapController.Sce
         mapController.setMarkerPickListener(this);
         mapController.setPickRadius(20);
 
-        if (MyLocationMarkerManager.deviceHasGpsCapability(this))
-            myLocation = new MyLocationMarkerManager(this, mapController, findViewById(R.id.buttonMyLocation));
+        //if (MyLocationMarkerManager.deviceHasGpsCapability(this))
+        //    myLocation = new MyLocationMarkerManager(this, mapController, findViewById(R.id.buttonMyLocation));
 
-        route = new RouteManager(mapController);
+        //route = new RouteManager(mapController);
+        mapData = new MapDataManager(this, mapController);
 
         mapController.loadSceneFile(getBaseScene(isVector), getSceneUpdates());
         setSourceToggleDrawable(buttonToggle);
@@ -244,6 +245,8 @@ public class MainActivity extends AppCompatActivity implements MapController.Sce
             Toast.makeText(this, "Scene load error: " + sceneId + " " + sceneError.getSceneUpdate().toString() + " " + sceneError.getError().toString(), Toast.LENGTH_SHORT).show();
             Log.e(TAG, "Scene update errors " + sceneError.getSceneUpdate().toString() + " " + sceneError.getError().toString());
         }
-        myLocation.onSceneReady();
+        if (myLocation != null)
+            myLocation.onSceneReady();
+        mapData.onSceneReady();
     }
 }
